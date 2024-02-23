@@ -2,10 +2,14 @@ import prisma from "@/pages/lib/prisma";
 
 export default async function handle(req: any, res: any) {
   const recipeId = req.query.id;
+
   if (req.method === "DELETE") {
     const recipe = await prisma.recipe.delete({
-      where: { id: recipeId },
+      where: {
+        id: Number(recipeId),
+      },
     });
+
     res.json(recipe);
   } else if (req.method === "PUT") {
     const updateRecipe = await prisma.recipe.update({

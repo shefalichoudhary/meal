@@ -1,6 +1,6 @@
 import Router from "next/router";
 import * as React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import SendIcon from "@mui/icons-material/Send";
 import { useState, useEffect } from "react";
 import { Multiselect } from "multiselect-react-dropdown";
@@ -8,20 +8,18 @@ type FormData = {
   id: string;
   title?: string | undefined;
   category?: string | undefined;
-  ingredients?: [] | undefined;
+  ingredients?: { label: string; value: number }[] | undefined;
   directions?: string | undefined;
 };
 
 export default function AddRecipe(recipe: FormData) {
-  const { register, handleSubmit, reset } = useForm<FormData>({
+  const { control, register, handleSubmit, reset } = useForm<FormData>({
     defaultValues: recipe,
   });
 
   const [veggieOptions, setveggieOptions] = useState<any>([]);
-  const [selectedIngredients, setSelectedIngredients] = useState();
 
   const onSubmit = async (data: FormData) => {
-    console.log(data, "form data");
     try {
       const body = { data };
       await fetch("/api/recipe", {
@@ -49,12 +47,6 @@ export default function AddRecipe(recipe: FormData) {
       setveggieOptions(veggies);
     })();
   }, []);
-
-  const handleIngredientSelect = (selectedOptions: any) => {
-    setSelectedIngredients(selectedOptions);
-  };
-
-  console.log(selectedIngredients, "ingredientsOption");
 
   return (
     <div className="container max-w-sm  md:max-w-xl m-auto md:py-8 ">
@@ -96,7 +88,7 @@ export default function AddRecipe(recipe: FormData) {
                     "
               {...register("category")}
             >
-              <option value="">Choose category</option>
+              <option value="">Select...</option>
 
               <option value="breakfast">breakfast</option>
               <option value="lunch">lunch</option>
@@ -106,13 +98,21 @@ export default function AddRecipe(recipe: FormData) {
           </label>
           <label>
             <span className="text-gray-700">Ingredients</span>
-            <Multiselect
-              className=" searchable mt-1"
-              options={veggieOptions}
-              displayValue="label"
-              onSelect={handleIngredientSelect}
-              selectedValues={selectedIngredients}
-            ></Multiselect>
+
+            <Controller
+              control={control}
+              name="ingredients"
+              defaultValue={[]}
+              render={({ field: { value, onChange } }) => (
+                <Multiselect
+                  className="mt-2"
+                  options={veggieOptions}
+                  displayValue="label"
+                  onSelect={(selected: any) => onChange(selected)}
+                  selectedValues={value}
+                />
+              )}
+            />
           </label>
           <label>
             <span className="text-gray-700">Directions</span>

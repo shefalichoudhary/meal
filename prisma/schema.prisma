@@ -61,14 +61,13 @@ model Recipe {
   title            String
   category         String
   directions       String
-  ingredients     RecipeIngredient[]
+  ingredients RecipeIngredient[]  
 }
 
 model Ingredient {
   id       Int    @id @default(autoincrement())
   veggieName     String
-  veggieId      Int?
-  recipe    RecipeIngredient[]
+ recipes    RecipeIngredient[] 
 }
 
 model RecipeIngredient {

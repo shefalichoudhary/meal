@@ -1,10 +1,39 @@
-import prisma from "@/pages/lib/prisma";
+// pages/api/add-recipe.js
 
-export default async function handle(req: any, res: any) {
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default async function handler(req: any, res: any) {
   const { data } = req.body;
-  const newRecipe = await prisma.recipe.create({
-    data,
-  });
-  console.log(newRecipe, "hello");
-  return res.status(201).send(newRecipe);
+  console.log(data, "jii");
+
+  const { title, category, directions, ingredients } = data;
+
+  try {
+    // Create the recipe
+    const recipe = await prisma.recipe.create({
+      data: {
+        title,
+        category,
+        directions,
+      },
+    });
+
+    // Create ingredients and associate them with the recipe
+    for (const ingredient of ingredients) {
+      await prisma.recipeIngredient.create({
+        data: {
+          recipeId: recipe.id,
+          ingredientId: ingredient.value,
+        },
+      });
+    }
+
+    return res
+      .status(201)
+      .json({ message: "Recipe created successfully", recipe });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 }

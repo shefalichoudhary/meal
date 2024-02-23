@@ -1,10 +1,24 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import prisma from "./lib/prisma";
-import { Recipe } from "@prisma/client";
+
+interface Ingredient {
+  id: number;
+  veggieName: string;
+}
+
+interface Recipe {
+  id: number;
+  published: boolean;
+  title: string;
+  category: string;
+  directions: string;
+  ingredients: Ingredient[]; // Add the ingredients property
+}
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const recipes = await prisma.recipe.findMany();
+  const recipes = await prisma.recipe.findMany({});
+
   return {
     props: { recipes },
   };

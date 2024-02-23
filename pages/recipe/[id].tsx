@@ -11,6 +11,13 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     where: {
       id: Number(params?.id),
     },
+    include: {
+      ingredients: {
+        include: {
+          ingredient: true, // Include the Ingredient model
+        },
+      },
+    },
   });
 
   return {
@@ -18,15 +25,14 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 };
 
-async function deleteRecipe(id: string): Promise<void> {
+async function deleteRecipe(id: number): Promise<void> {
   await fetch(`/api/recipe/${id}`, {
     method: "DELETE",
   });
   Router.push("/recipes");
 }
 
-const Recipe = (recipe: any) => {
-  console.log(recipe);
+const Recipe = ({ recipe }: any) => {
   const { data: session } = useSession();
   const [mode, setMode] = useState(true);
 
@@ -37,10 +43,11 @@ const Recipe = (recipe: any) => {
           Recipe
         </h1>
         <div className=" max-w-sm md:max-w-3xl lg:max-w-5xl text-lg pt-7 grid md:grid-cols-2 mx-auto gap-2 ">
-          <div className="md:mx-14 mt-3">
+          <div className="md:mx-10 mt-2">
             <div className=" text-xl mb-3  capitalize... tracking-widest">
               {recipe.title}
             </div>
+
             <div className=" py-24  border border-black"></div>
           </div>
           <div className="">
@@ -56,6 +63,7 @@ const Recipe = (recipe: any) => {
             >
               Ingredients
             </button>
+
             <button
               className={`border  
             border-slate-900 
@@ -72,7 +80,15 @@ const Recipe = (recipe: any) => {
               <DeleteIcon style={{ fontSize: "32px" }} />
             </button>
             {mode ? (
-              <div className="text-slate-600 text-sm leading-relaxed ...  "></div>
+              <div className="text-slate-600 text-base leading-relaxed ...  ">
+                <ul className="list-disc font-sans  capitalize ...">
+                  {recipe.ingredients.map((ingredient: any) => (
+                    <li key={ingredient.id}>
+                      {ingredient.ingredient.veggieName}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ) : (
               <>
                 <div className="text-slate-600  text-sm leading-relaxed ...  ">
@@ -110,6 +126,7 @@ const Recipe = (recipe: any) => {
           >
             Ingredients
           </button>
+
           <button
             className={`border  
             border-slate-900 
