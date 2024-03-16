@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 
 export default async function handler(req: any, res: any) {
   const { data } = req.body;
-  console.log(data, "jii");
 
   const { title, category, directions, ingredients } = data;
 

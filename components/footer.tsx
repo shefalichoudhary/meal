@@ -5,8 +5,8 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 function Footer() {
   return (
-    <>
-      <nav className="md:flex items-center md:justify-between  text-white font-serif  px-14 py-4 shadow-lg bg-neutral-800">
+    <div className="bg-emerald-800">
+      <nav className="  container m-auto    md:flex items-center md:justify-between  text-white font-sans  px-14 py-4 shadow-lg ">
         <a href="/" className="text-xl">
           THE KITCHN
           <LocalDiningIcon style={{ marginLeft: "5px" }} />
@@ -30,7 +30,7 @@ function Footer() {
           </a>
         </div>
       </nav>
-    </>
+    </div>
   );
 }
 export default Footer;

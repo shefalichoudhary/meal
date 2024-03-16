@@ -12,20 +12,25 @@ export default function Header(props: any) {
 
   if (session) {
     return (
-      <>
-        <nav className="md:flex md:items-center md:justify-between py-4 px-8 shadow-xl">
-          <a href="/" className="font-serif tracking-widest ">
+      <div className="shadow-xl">
+        <nav className=" container m-auto bg-white md:flex md:items-center md:justify-between py-4 px-8  ">
+          <a href="/" className="font-sans  tracking-widest text-emerald-800  ">
             THE KITCHN
-            <LocalDiningIcon style={{ color: "black", marginLeft: "5px" }} />
+            <LocalDiningIcon
+              style={{
+                color: " rgb(16 185 129)",
+                marginLeft: "5px",
+              }}
+            />
           </a>
           <div
             onClick={() => setOpen(!open)}
-            className="absolute right-8 top-5 cursor-pointer md:hidden"
+            className="absolute right-8 top-5 cursor-pointer text-emerald-800  md:hidden"
           >
             {open ? <MenuIcon /> : <CloseIcon />}
           </div>
           <ul
-            className={`md:flex md :items-center tracking-wide  md:pb-0 pb-2  md:pt-0 pt-2 font-serif  ${
+            className={`md:flex md :items-center tracking-wide  md:pb-0 pb-2  md:pt-0 pt-2 font-sans  ${
               open ? "hidden" : "static"
             }`}
           >
@@ -36,35 +41,39 @@ export default function Header(props: any) {
               <li key={title} className=" md:mx-3 md:my-0 my-3">
                 <a
                   href={url}
-                  className="   text-black  hover:underline decoration-1 duration-500 "
+                  className="text-md leading-6 font-medium     text-emerald-800    decoration-1 duration-500 "
                 >
                   {title}
                 </a>
               </li>
             ))}
             <li>
-              <button onClick={() => signOut()}>signOut</button>
+              <button className="text-emerald-800  " onClick={() => signOut()}>
+                LogOut
+              </button>
             </li>
           </ul>
         </nav>
-      </>
+      </div>
     );
   } else {
     return (
       <>
-        <nav className="md:flex md:items-center md:justify-between py-4 px-8 shadow-xl  ">
-          <a href="/" className="font-serif tracking-widest ">
+        <nav className=" container m-auto bg-white md:flex md:items-center md:justify-between py-4 px-8 shadow-xl  ">
+          <a href="/" className="font-sans tracking-widest text-emerald-800  ">
             THE KITCHN
-            <LocalDiningIcon style={{ color: "black", marginLeft: "5px" }} />
+            <LocalDiningIcon
+              style={{ color: " rgb(16 185 129) ", marginLeft: "5px" }}
+            />
           </a>
           <div
             onClick={() => setOpen(!open)}
-            className="absolute right-8 top-5 cursor-pointer md:hidden"
+            className="absolute right-8 top-5 cursor-pointer  text-emerald-800 md:hidden"
           >
             {open ? <MenuIcon /> : <CloseIcon />}
           </div>
           <ul
-            className={`md:flex md :items-center tracking-wide  md:pb-0 pb-2  md:pt-0 pt-2 font-serif  ${
+            className={`md:flex md :items-center tracking-wide  md:pb-0 pb-2  md:pt-0 pt-2 font-sans ${
               open ? "hidden" : "static"
             }`}
           >
@@ -75,14 +84,16 @@ export default function Header(props: any) {
               <li key={title} className=" md:mx-3 md:my-0 my-3">
                 <a
                   href={url}
-                  className="   text-black font-medium  hover:underline decoration-1 duration-500 "
+                  className="  text-emerald-800  font-medium  hover:underline decoration-1 duration-500 "
                 >
                   {title}
                 </a>
               </li>
             ))}
             <li>
-              <button onClick={() => signIn()}>signIn</button>
+              <button className="text-emerald-800  " onClick={() => signIn()}>
+                signIn
+              </button>
             </li>
           </ul>
         </nav>

@@ -39,12 +39,12 @@ const Recipe = ({ recipe }: any) => {
   if (session) {
     return (
       <div className="mt-8 mb-28">
-        <h1 className="font-light text-2xl mb-8  text-center tracking-widest">
+        <h1 className="font-thin text-3xl my-3  text-center tracking-widest text-emerald-800">
           Recipe
         </h1>
         <div className=" max-w-sm md:max-w-3xl lg:max-w-5xl text-lg pt-7 grid md:grid-cols-2 mx-auto gap-2 ">
           <div className="md:mx-10 mt-2">
-            <div className=" text-xl mb-3  capitalize... tracking-widest">
+            <div className=" text-2xl mb-3  capitalize... tracking-widest text-emerald-800">
               {recipe.title}
             </div>
 
@@ -55,7 +55,7 @@ const Recipe = ({ recipe }: any) => {
               className={`border  
             border-slate-900 
             mr-5 px-6 py-4  text-sm  font-medium my-4 rounded tracking-widest    ${
-              mode === true ? " bg-red-800 text-white  " : " "
+              mode === true ? " bg-emerald-800 text-white  " : " "
             }`}
               onClick={() => {
                 setMode(true);
@@ -68,7 +68,7 @@ const Recipe = ({ recipe }: any) => {
               className={`border  
             border-slate-900 
             mr-5 px-6 py-4  text-sm my-4 font-medium  rounded tracking-widest   ${
-              mode === false ? "text-white  bg-red-800" : ""
+              mode === false ? "text-white  bg-emerald-800" : ""
             }`}
               onClick={() => {
                 setMode(false);
@@ -80,7 +80,7 @@ const Recipe = ({ recipe }: any) => {
               <DeleteIcon style={{ fontSize: "32px" }} />
             </button>
             {mode ? (
-              <div className="text-slate-600 text-base leading-relaxed ...  ">
+              <div className="text-slate-600  pl-5 text-base leading-relaxed ...  ">
                 <ul className="list-disc font-sans  capitalize ...">
                   {recipe.ingredients.map((ingredient: any) => (
                     <li key={ingredient.id}>
@@ -91,7 +91,7 @@ const Recipe = ({ recipe }: any) => {
               </div>
             ) : (
               <>
-                <div className="text-slate-600  text-sm leading-relaxed ...  ">
+                <div className="text-slate-600  pr-24 text-sm leading-relaxed ...  ">
                   {recipe.directions}
                 </div>
               </>
@@ -118,7 +118,7 @@ const Recipe = ({ recipe }: any) => {
             className={`border  
             border-slate-900 
             mr-5 px-6 py-4  text-sm my-4 font-medium  rounded tracking-widest  ${
-              mode === true ? " bg-red-800 text-white" : ""
+              mode === true ? " bg-emerlad-800 text-white" : ""
             }`}
             onClick={() => {
               setMode(true);
@@ -131,7 +131,7 @@ const Recipe = ({ recipe }: any) => {
             className={`border  
             border-slate-900 
             mr-5 px-6 py-4  text-sm my-4 font-medium  rounded tracking-widest    ${
-              mode === false ? "text-white  bg-red-800" : ""
+              mode === false ? "text-white  bg-emerald-800" : ""
             }`}
             onClick={() => {
               setMode(false);
@@ -140,7 +140,15 @@ const Recipe = ({ recipe }: any) => {
             Directions
           </button>
           {mode ? (
-            <div className="text-slate-600 text-sm leading-relaxed ...  "></div>
+            <div className="text-slate-600  pl-5 text-base leading-relaxed ...  ">
+              <ul className="list-disc font-sans  capitalize ...">
+                {recipe.ingredients.map((ingredient: any) => (
+                  <li key={ingredient.id}>
+                    {ingredient.ingredient.veggieName}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ) : (
             <>
               <div className="text-slate-600  text-sm leading-relaxed ...  ">

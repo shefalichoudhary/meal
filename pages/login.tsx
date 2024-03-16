@@ -13,7 +13,7 @@ const Login = () => {
     return (
       <>
         <div>
-          <button className="color-red" onClick={() => signIn()}>
+          <button className="text-white" onClick={() => signIn()}>
             SignIN
           </button>
         </div>

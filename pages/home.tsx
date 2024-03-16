@@ -1,33 +1,35 @@
+import MyButton from "@/components/my-button";
+import { useRouter } from "next/navigation";
+
 function HomePage() {
+  const { push } = useRouter();
+  const handleClick = () => {
+    push("/explore-recipes");
+  };
   return (
-    <div className="my-20">
-      <div className="  container  md:mt-12 md:mb-32 my-16  grid  md:grid-cols-4 grid-cols-2 gap-6 mx-auto items-center  md:max-w-3xl max-w-sm">
-        <div className="">
-          <img
-            src="./img-1.jpeg"
-            className="h-auto  max-w-full rounded-lg shadow-2xl transition duration-300 ease-in-out hover:scale-110 "
-          ></img>
-        </div>
-        <div>
-          <img
-            src="./img-2.jpeg"
-            className="h-auto max-w-full rounded-lg shadow-2xl transition duration-300 ease-in-out hover:scale-110 "
-          ></img>
-        </div>{" "}
-        <div>
-          <img
-            src="./img-3.jpeg"
-            className="h-auto max-w-full rounded-lg shadow-2xl transition duration-300 ease-in-out hover:scale-110 "
-          ></img>
-        </div>
-        <div>
-          <img
-            src="./img-4.jpeg"
-            className="h-auto max-w-full rounded-lg shadow-2xl transition duration-300 ease-in-out hover:scale-110 "
-          ></img>
+    <>
+      <div className=" bg-emerald-800 py-14 mb-1 ">
+        <div className="  container m-auto grid md:grid-cols-2  ">
+          <div className=" mx-4 md:mx-0 md:mt-8">
+            <div className=" font-sans text-5xl md:text-5xl lg:text-7xl leading-none font-semibold  text-white tracking-wide   mb-4 sm:mb-5">
+              The Easiest Way To Make Your Favorite Meal
+            </div>
+            <div className=" text-sm text-white font-normal mb-2">
+              A Recipe is Soulless.The essence of Recipe must come from you. The
+              Cook
+            </div>
+
+            <MyButton
+              type="button"
+              name=" Explore Recipes"
+              onClick={handleClick}
+            ></MyButton>
+          </div>
+
+          <img src="./bg.png" height="50px" width="600px"></img>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default HomePage;

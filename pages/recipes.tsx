@@ -30,10 +30,13 @@ const Recipes = ({ recipes }: { recipes: Recipe[] }) => {
       <h1 className="font-light text-3xl mb-8  text-center tracking-widest">
         Recipes
       </h1>
-      <div className="  grid  sm:grid-cols-2 md:grid-cols-3 pt-2 gap-3  mx-auto font-serif ">
-        {recipes.map((recipe) => (
+      <div className="  grid  sm:grid-cols-2 md:grid-cols-3 pt-2 gap-4  mx-auto font-serif ">
+        {recipes.map((recipe: any, index: any) => (
           <a href={`/recipe/${recipe.id}`}>
-            <div key={recipe.id} className=" shadow-md mx-auto py-12 px-10  ">
+            <div
+              key={index}
+              className=" bg-emerald-800 text-white shadow-sm mx-auto py-12 px-10  "
+            >
               <div className=" text-2xl mb-2  truncate">{recipe.title}</div>
               <div className=" mb-1 "> Category: {recipe.category}</div>
             </div>

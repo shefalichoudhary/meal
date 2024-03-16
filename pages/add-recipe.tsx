@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import SendIcon from "@mui/icons-material/Send";
 import { useState, useEffect } from "react";
 import { Multiselect } from "multiselect-react-dropdown";
+import MyButton from "@/components/my-button";
 type FormData = {
   id: string;
   title?: string | undefined;
@@ -49,14 +50,14 @@ export default function AddRecipe(recipe: FormData) {
   }, []);
 
   return (
-    <div className="container max-w-sm  md:max-w-xl m-auto md:py-8 ">
+    <div className="container max-w-sm  md:max-w-xl m-auto md:py-8 py-4">
       <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-        <div className="font-light text-3xl my-3  text-center tracking-widest">
+        <div className="font-thin text-3xl my-3  text-center tracking-widest text-emerald-800">
           ADD RECIPE
         </div>
-        <div className="  grid grid-col-1 pt-7 gap-5 ">
+        <div className="   grid grid-col-1 pt-2 gap-5 ">
           <label>
-            <span className="text-gray-700">Title</span>
+            <span className="text-emerald-800">Title</span>
             <input
               type="text"
               className="
@@ -73,7 +74,7 @@ export default function AddRecipe(recipe: FormData) {
           </label>
 
           <label>
-            <span className="text-gray-700">Category</span>
+            <span className="text-emerald-800">Category</span>
             <select
               className="
               form-select
@@ -97,7 +98,7 @@ export default function AddRecipe(recipe: FormData) {
             </select>
           </label>
           <label>
-            <span className="text-gray-700">Ingredients</span>
+            <span className="text-emerald-800">Ingredients</span>
 
             <Controller
               control={control}
@@ -115,7 +116,7 @@ export default function AddRecipe(recipe: FormData) {
             />
           </label>
           <label>
-            <span className="text-gray-700">Directions</span>
+            <span className="text-emerald-800">Directions</span>
             <textarea
               className="
              w-full
@@ -130,13 +131,7 @@ export default function AddRecipe(recipe: FormData) {
         </div>
 
         <div>
-          <button
-            className="px-6 py-4  text-sm mb-8 font-normal mt-4  rounded tracking-widest  md:my-8 bg-red-800 text-white "
-            type="submit"
-          >
-            SUBMIT
-            <SendIcon className="ml-2" />
-          </button>
+          <MyButton type="submit" name="Create Recipe"></MyButton>
         </div>
       </form>
     </div>
