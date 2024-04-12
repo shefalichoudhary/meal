@@ -61,6 +61,7 @@ model Recipe {
   title            String
   category         String
   directions       String
+   image       String? 
   ingredients RecipeIngredient[]  
 }
 

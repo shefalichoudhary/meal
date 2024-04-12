@@ -35,7 +35,7 @@ const Recipes = ({ recipes }: { recipes: Recipe[] }) => {
           <a href={`/recipe/${recipe.id}`}>
             <div
               key={index}
-              className=" bg-emerald-800 text-white shadow-sm mx-auto py-12 px-10  "
+              className=" text-black shadow-md mx-auto py-12 px-10  "
             >
               <div className=" text-2xl mb-2  truncate">{recipe.title}</div>
               <div className=" mb-1 "> Category: {recipe.category}</div>

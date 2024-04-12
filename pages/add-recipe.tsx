@@ -1,7 +1,6 @@
 import Router from "next/router";
 import * as React from "react";
 import { useForm, Controller } from "react-hook-form";
-import SendIcon from "@mui/icons-material/Send";
 import { useState, useEffect } from "react";
 import { Multiselect } from "multiselect-react-dropdown";
 import MyButton from "@/components/my-button";
@@ -25,9 +24,12 @@ export default function AddRecipe(recipe: FormData) {
       const body = { data };
       await fetch("/api/recipe", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(body),
       });
+
       Router.push("/recipes");
     } catch (error) {
       console.error(error);
