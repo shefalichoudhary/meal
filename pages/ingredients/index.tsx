@@ -22,15 +22,15 @@ export default function Ingredients() {
   }, []);
 
   return (
-    <div className="fixed bg-white shadow-lg  h-full w-1/4 ">
-      <div className="text-center text-slate-600 text-md leading-relaxed mb-8">
+    <div className=" sticky  shadow-lg  h-full w-1/7 ">
+      <div className="text-center text-slate-600 text-md leading-relaxed mt-6 mb-8">
         Select by Veggies
       </div>
 
-      <div className="flex flex-wrap  ">
+      <div className="flex flex-wrap ml-2  ">
         {veggieOptions.map((vegetable: any) => (
           <div key={vegetable.id} className=" p-1 ">
-            <button className="border-2 px-4 py-2">{vegetable.name}</button>
+            <button className="border-2 px-3 py-2">{vegetable.name}</button>
           </div>
         ))}
       </div>

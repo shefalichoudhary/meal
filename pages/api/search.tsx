@@ -9,36 +9,8 @@ export default async function handler(req: any, res: any) {
 
   try {
     const results = await prisma.recipe.findMany({
-      include: {
-        ingredients: {
-          include: {
-            ingredient: true, // Include the Ingredient model
-          },
-        },
-      },
       where: {
-        OR: [
-          {
-            title: { contains: query },
-          },
-          {
-            category: {
-              contains: query, // Search in the category field
-            },
-          },
-          {
-            ingredients: {
-              some: {
-                ingredient: {
-                  // Update to the correct property name
-                  veggieName: {
-                    contains: query, // Search in the veggieName field
-                  },
-                },
-              },
-            },
-          },
-        ],
+        title: { contains: query },
       },
     });
 

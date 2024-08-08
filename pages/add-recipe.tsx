@@ -10,6 +10,7 @@ type FormData = {
   category?: string | undefined;
   ingredients?: { label: string; value: number }[] | undefined;
   directions?: string | undefined;
+  image?: string | undefined;
 };
 
 export default function AddRecipe(recipe: FormData) {
@@ -20,6 +21,7 @@ export default function AddRecipe(recipe: FormData) {
   const [veggieOptions, setveggieOptions] = useState<any>([]);
 
   const onSubmit = async (data: FormData) => {
+    console.log(data, "consoling data");
     try {
       const body = { data };
       await fetch("/api/recipe", {
@@ -129,6 +131,22 @@ export default function AddRecipe(recipe: FormData) {
                      p-2"
               {...register("directions")}
             />
+          </label>
+          <label>
+            <span className="text-emerald-800">Upload image</span>
+            <input
+              type="url"
+              className="
+            form-input
+             w-full
+            border
+            border-slate-300
+                    rounded
+                    mt-1
+                    p-3"
+              required
+              {...register("image")}
+            ></input>
           </label>
         </div>
 

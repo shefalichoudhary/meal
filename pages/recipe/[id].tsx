@@ -48,7 +48,9 @@ const Recipe = ({ recipe }: any) => {
               {recipe.title}
             </div>
 
-            <div className=" py-24  border border-black"></div>
+            {recipe.image && (
+              <img className=" h-48" src={recipe.image} alt={recipe.title} />
+            )}
           </div>
           <div className="">
             <button
@@ -83,7 +85,7 @@ const Recipe = ({ recipe }: any) => {
               <div className="text-slate-600  pl-5 text-base leading-relaxed ...  ">
                 <ul className="list-disc font-sans  capitalize ...">
                   {recipe.ingredients.map((ingredient: any) => (
-                    <li key={ingredient.id}>
+                    <li key={ingredient.ingredient.id}>
                       {ingredient.ingredient.veggieName}
                     </li>
                   ))}
@@ -111,14 +113,14 @@ const Recipe = ({ recipe }: any) => {
           <div className=" text-xl mb-3  capitalize... tracking-widest">
             {recipe.title}
           </div>
-          <div className=" py-24  border border-black"></div>
+          {recipe.image && <img src={recipe.image} alt={recipe.title} />}
         </div>
         <div className="">
           <button
             className={`border  
             border-slate-900 
-            mr-5 px-6 py-4  text-sm my-4 font-medium  rounded tracking-widest  ${
-              mode === true ? " bg-emerlad-800 text-white" : ""
+            mr-5 px-6 py-4  text-sm  font-medium my-4 rounded tracking-widest    ${
+              mode === true ? " bg-emerald-800 text-white  " : " "
             }`}
             onClick={() => {
               setMode(true);
@@ -143,7 +145,7 @@ const Recipe = ({ recipe }: any) => {
             <div className="text-slate-600  pl-5 text-base leading-relaxed ...  ">
               <ul className="list-disc font-sans  capitalize ...">
                 {recipe.ingredients.map((ingredient: any) => (
-                  <li key={ingredient.id}>
+                  <li key={ingredient.ingredient.id}>
                     {ingredient.ingredient.veggieName}
                   </li>
                 ))}

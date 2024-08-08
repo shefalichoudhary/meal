@@ -8,7 +8,7 @@ function ExploreRecipes() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [recipes, setRecipes] = useState([]);
-  const [showIngredients, setShowIngredients] = useState(false);
+  const [showIngredients, setShowIngredients] = useState(true);
 
   const toggleIngredients = () => {
     setShowIngredients(!showIngredients);
@@ -43,18 +43,18 @@ function ExploreRecipes() {
     <div className="flex">
       <div
         onClick={toggleIngredients}
-        className=" left-8  cursor-pointer text-emerald-800  md:hidden "
+        className="  cursor-pointer text-emerald-800  md:hidden "
       >
         {showIngredients ? <MenuIcon /> : <CloseIcon />}
       </div>
-
       <div
-        className={`  md:flex md :items-center tracking-wide  md:pb-0 pb-2  md:pt-0 pt-2 font-sans  ${
+        className={`  md:flex md :items-center tracking-wide   font-sans  ${
           showIngredients ? "hidden" : "static"
         }`}
       >
         <Ingredients />
       </div>
+
       <div className="w-full md:w-4/5 p-8 mx-auto">
         <div className="container mx-auto items-center md:max-w-4xl max-w-sm text-center py-12 md:py-20 sm:py-18 mb-48">
           <div>
@@ -80,7 +80,12 @@ function ExploreRecipes() {
               <div className="grid sm:grid-cols-2 md:grid-cols-3 pt-2 gap-4 mx-auto font-serif">
                 {recipes.map((recipe: any, index) => (
                   <a key={index} href={`/recipe/${recipe.id}`}>
-                    <div className="text-black shadow-md mx-auto pt-14 pb-6 px-8">
+                    <div
+                      className="text-black shadow-md mx-auto pt-14 pb-6 px-8"
+                      style={{
+                        backgroundImage: `url(${recipe.image})`,
+                      }}
+                    >
                       <div className="text-2xl mb-2 truncate capitalize">
                         {recipe.title}
                       </div>

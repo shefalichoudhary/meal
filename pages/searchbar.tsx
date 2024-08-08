@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import { url } from "inspector";
 
 type Input = {
   searchItem: string;
@@ -13,7 +12,7 @@ export default function Searchbar() {
 
   const [searchResults, setSearchResults] = useState<any>([]);
 
-  const { register } = useForm<Input>();
+  const { register, handleSubmit } = useForm<Input>();
   const handleChange = (event: any) => {
     setQuery(event.target.value);
     handleSearch(event.target.value);
@@ -34,7 +33,7 @@ export default function Searchbar() {
 
   return (
     <div className="mb-8 ">
-      <form autoComplete="off">
+      <form autoComplete="off ">
         <div className="text-center font-serif   md:mt-26 ">
           <div className=" max-w-sm md:max-w-lg   m-auto md:px-0 px-6">
             <div className="relative w-full flex ">
@@ -64,22 +63,23 @@ export default function Searchbar() {
               </button>
             </div>
 
-            <ul className=" mt-4 shadow-sm  text-base ">
+            <ul className=" mt-4 shadow-sm  text-base  ">
               {searchResults.length === 0 && query && (
                 <p className=" py-4 text-slate-600">
                   No results found for "{search}"
                 </p>
               )}
-              {searchResults.map((recipe: any, index: any) => (
-                <a href={`/recipe/${recipe.id}`}>
-                  <li
-                    key={index}
-                    className=" text-emerald-900 pb-2 hover:bg-emerald-600 hover:text-white capitalize  mb-1 "
-                  >
-                    <div>{recipe.title}</div>
-                  </li>
-                </a>
-              ))}
+              {search &&
+                searchResults.map((recipe: any, index: any) => (
+                  <a href={`/recipe/${recipe.id}`}>
+                    <li
+                      key={index}
+                      className=" text-emerald-900 pb-2 hover:bg-emerald-600 hover:text-white capitalize  mb-1 "
+                    >
+                      <div>{recipe.title}</div>
+                    </li>
+                  </a>
+                ))}
             </ul>
           </div>
         </div>
