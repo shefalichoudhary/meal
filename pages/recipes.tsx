@@ -27,22 +27,24 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Recipes = ({ recipes }: { recipes: Recipe[] }) => {
   console.log({ recipes }, "fetchings");
   return (
-    <div className="mt-12 mb-48 md:max-w-3xl sm:max-w-lg max-w-sm mx-auto">
+    <div className="mt-5 mb-48 md:max-w-3xl sm:max-w-lg max-w-sm mx-auto">
       <h1 className="font-light text-3xl mb-8  text-center tracking-widest">
         Recipes
       </h1>
       <div className="  grid  sm:grid-cols-2 md:grid-cols-3 pt-2 gap-4  mx-auto font-serif ">
         {recipes.map((recipe: any) => (
           <a key={recipe.id} href={`/recipe/${recipe.id}`}>
-            <div className=" text-black shadow-md mx-auto py-6 px-8  ">
+            <div className=" text-black shadow-md mx-auto py-3 px-1 ">
               <div
-                className="bg-cover bg-center h-40 w-full"
+                className="bg-cover bg-center h-56 w-full"
                 style={{
                   backgroundImage: `url(${recipe.image})`,
                 }}
               ></div>
-              <div className=" text-2xl mb-1  truncate">{recipe.title}</div>
-              <div> Category: {recipe.category}</div>
+              <div className=" text-2xl mt-1  truncate capitalize">
+                {recipe.title}
+              </div>
+              <div className="text-sm"> Category: {recipe.category}</div>
             </div>
           </a>
         ))}

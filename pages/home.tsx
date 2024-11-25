@@ -10,9 +10,9 @@ function HomePage() {
   return (
     <>
       <div className=" bg-emerald-800 py-14 mb-1 ">
-        <div className="  container m-auto grid md:grid-cols-2  ">
+        <div className="  container m-auto grid md:grid-cols-2   ">
           <div className=" mx-4 md:mx-0 md:mt-8">
-            <div className=" font-sans text-5xl md:text-5xl lg:text-7xl leading-none font-semibold  text-white tracking-wide   mb-4 sm:mb-5">
+            <div className=" font-sans text-5xl md:text-5xl lg:text-7xl leading-none font-semibold  text-white tracking-wide   mb-4 sm:mb-5 ">
               The Easiest Way To Make Your Favorite Meal
             </div>
             <div className=" text-sm text-white font-normal mb-2">
@@ -27,7 +27,7 @@ function HomePage() {
             ></MyButton>
           </div>
 
-          <img src="./bg.png" height="50px" width="600px"></img>
+          <img src="./bg.png" height={500} width={550}></img>
         </div>
       </div>
     </>

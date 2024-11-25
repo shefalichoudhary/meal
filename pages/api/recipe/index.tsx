@@ -8,7 +8,6 @@ export default async function handler(req: any, res: any) {
   }
 
   const { title, category, directions, image, ingredients } = req.body.data;
-  console.log({ image }, "consoling");
 
   try {
     // Create the recipe in the database

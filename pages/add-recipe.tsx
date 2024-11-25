@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { Multiselect } from "multiselect-react-dropdown";
 import MyButton from "@/components/my-button";
+
 type FormData = {
   id: string;
   title?: string | undefined;
@@ -21,7 +22,6 @@ export default function AddRecipe(recipe: FormData) {
   const [veggieOptions, setveggieOptions] = useState<any>([]);
 
   const onSubmit = async (data: FormData) => {
-    console.log(data, "consoling data");
     try {
       const body = { data };
       await fetch("/api/recipe", {
@@ -110,7 +110,7 @@ export default function AddRecipe(recipe: FormData) {
               defaultValue={[]}
               render={({ field: { value, onChange } }) => (
                 <Multiselect
-                  className="mt-2"
+                  className="mt-2 "
                   options={veggieOptions}
                   displayValue="label"
                   onSelect={(selected: any) => onChange(selected)}

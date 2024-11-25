@@ -1,14 +1,17 @@
-import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
-import Header from "../components/header";
+import { SessionProvider } from "next-auth/react"; // Import SessionProvider from next-auth
+import "./globals.css";
+import Header from "@/components/header";
 import Footer from "@/components/footer";
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
+  console.log(pageProps);
   return (
-    <SessionProvider session={pageProps.session}>
-      <Header></Header>
+    <SessionProvider session={session}>
+      {/* Wrap the app with SessionProvider */}
+      <Header />
       <Component {...pageProps} />
-      <Footer></Footer>
+      <Footer />
     </SessionProvider>
   );
 };

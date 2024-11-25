@@ -1,10 +1,10 @@
 import React from "react";
 
-function MyButton({ type, onClick, name }: any) {
+function MyButton({ type, variant = "primary", onClick, name }: any) {
   return (
     <>
       <button
-        className="px-6 py-4  text-sm mb-8 font-bold mt-4   bg-emerald-600 hover:bg-emerald-400 rounded-md  tracking-widest    text-white "
+        className="px-4 py-3  text-md mb-8  mt-4   bg-emerald-600 hover:bg-emerald-400 rounded-md  tracking-widest    text-white "
         type={type}
         onClick={onClick}
       >
