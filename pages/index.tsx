@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import HomePage from "./home";
 
 export default function Index() {
-  const { data: session, status } = useSession<any>();
+  const { status } = useSession<any>();
   const router = useRouter();
 
   useEffect(() => {
